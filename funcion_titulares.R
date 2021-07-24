@@ -15,7 +15,7 @@ mifunction <- function(url){
   fecha_arch <- str_c(pref, fecha)
   extension <- ".txt"
   
-  diarios <- read_html(url)
+  diarios <- read_html(url)#leo la url del diario y la paso a un objeto llamado diario
   
   nombre <- as.character(url)
   nombre <- str_remove(nombre, "https://www.")
@@ -23,6 +23,9 @@ mifunction <- function(url){
   
   nombre_extension <- str_c(nombre, fecha_arch, extension)
   nombre_extension
+  
+  #Voy obteniendo los titulares de los diarios, hay varios tipos de estructura por eso son varios nodos, eso es porque cada diario no está
+  #estructurado exactamente igual. En algunos casos tuve que usar la funcion str_trim para quitar los espacios inciales y finales de los titulares
   
   diarios %>%
     html_nodes(".article-details h1 a") %>%
@@ -62,9 +65,13 @@ mifunction <- function(url){
     html_nodes(".ld-card__body h3 a") %>%
     html_text() -> titular_8
   
+  #Acá genero el objeto que tendrá los titulares, algunos de esos titulares_x están vacios pero otros tendrán la info
+  #correspondiente a cada diario
   
   titulares <- c(fecha, titular_1, titular_2, titular_3, titular_4, titular_6,
                  titular_7, titular_8)
+  
+  #Acá genero un archivo tipo tibble y luego lo guardo en la pc
   
   x <- as_tibble(titulares)
   write.table(x, file = nombre_extension)
@@ -72,6 +79,9 @@ mifunction <- function(url){
   #x_titulares <- as_tibble(x_titulares)
   
 }
+
+#Esta funcion (funcion_titulares) permite usar la funcion anterior (mifunction) e ir pasandola por cada pagina web correspondiente a cada diario
+#A veces cuando pasa por el diario republica se corta pero si se pasa nuevamente funciona no tengo claro por qué sucede esto.
 
 funcion_titulares <- function() {
   
