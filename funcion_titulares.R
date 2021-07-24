@@ -15,7 +15,7 @@ mifunction <- function(url){
   fecha_arch <- str_c(pref, fecha)
   extension <- ".txt"
   
-  diarios <- read_html(url)#leo la url del diario y la paso a un objeto llamado diario
+  diarios <- read_html(url)#leo la url del diario y la paso a un objeto llamado diarios
   
   nombre <- as.character(url)
   nombre <- str_remove(nombre, "https://www.")
