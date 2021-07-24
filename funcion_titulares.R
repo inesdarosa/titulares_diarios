@@ -6,6 +6,9 @@ mifunction <- function(url){
   library(rvest)
   library(robotstxt)
   
+  #Esto de abajo es para generar el nombre del archivo, que va a contener la fecha del día, nombre del diario y la extensión txt
+  #El objeto que contendrá el nombre del archivo es nombre_extension.
+  
   fecha <- Sys.Date() 
   fecha <- as.character(fecha)
   pref <- "_"
