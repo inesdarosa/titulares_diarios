@@ -80,11 +80,10 @@ mifunction <- function(url){
   
 }
 
-#Esta funcion (funcion_titulares) permite usar la funcion anterior (mifunction) e ir pasandola por cada pagina web correspondiente a cada diario
-#A veces cuando pasa por el diario republica se corta pero si se pasa nuevamente funciona no tengo claro por qué sucede esto.
-
 funcion_titulares <- function() {
-  
+  #Esta funcion (funcion_titulares) permite usar la funcion anterior (mifunction) e ir pasandola por cada pagina web correspondiente a cada diario
+  #A veces cuando pasa por el diario republica se corta pero si se pasa nuevamente funciona no tengo claro por qué sucede esto. 
+ 
   url <- c("https://www.elobservador.com.uy/", "https://www.montevideo.com.uy/",
            "https://www.elpais.com.uy/", "https://www.ladiaria.com.uy/",
            "https://www.republica.com.uy/")
