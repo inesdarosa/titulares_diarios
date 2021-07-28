@@ -2,9 +2,9 @@ mifunction <- function(url){
   getwd()
   setwd('C:/Users/HP/Documents/Wrangling_R/proyecto')
   
-  library(tidyverse)
-  library(rvest)
-  library(robotstxt)
+  library(tidyverse)#conjunto de paquetes para trabajar con datos desde diferente perspectiva
+  library(rvest)#para scrapear html
+  library(robotstxt)#funciones para descargar y analizar txt
   
   #Esto de abajo es para generar el nombre del archivo, que va a contener la fecha del día, nombre del diario y la extensión txt
   #El objeto que contendrá el nombre del archivo es nombre_extension.
