@@ -1,0 +1,73 @@
+
+import pandas as pd
+import os 
+
+
+# Con las tres líneas de código de abajo genero un objeto de tipo lista 'archivos_titulares' que cada elemento es el nombre del archivo .txt
+# con los titulares de cada diario.
+proyecto = r'C:/Users/inesd/Documents/Wrangling_R/proyecto_copia_2'
+arch_extension = r".txt"
+archivos_titulares = [_ for _ in os.listdir(proyecto) if _.endswith(arch_extension)]
+
+def modificar_archivo(diario):
+    '''Esta función toma un archivo .txt (donde dice: diario) y en distintos pasos va modificando ese archivo, quitando
+    algunos elementos, creando columnas y su contenido y guardandolo como .csv en una carpeta diferente
+    de la de origen
+    '''
+
+    proyecto = r'C:/Users/inesd/Documents/Wrangling_R/proyecto_copia_2'# ubicación de una carpeta
+    arch_extension = r".txt"# extensión
+    archivos_titulares = [_ for _ in os.listdir(proyecto) if _.endswith(arch_extension)]# genero un objeto de tipo lista 'archivos_titulares'
+    # cada elemento es el nombre del archivo .txt con los titulares de cada diario encontrados en la carpeta 'proy_prueba'.
+   
+    os.chdir('C:/Users/inesd/Documents/Python Scripts/arch_tit_modificados')# me lleva a una ubicación
+    encabezado = ['titular']
+    archivos_titulares = archivos_titulares[i]# este archivo viene de un ciclo for que está por fuera de la función
+    archivos_titulares_1 = archivos_titulares.replace('.txt', '.csv')# modifico el archivo .txt a .csv
+
+    diario.to_csv(archivos_titulares_1, header=encabezado, encoding='iso8859_2', index=False)# guardo el archivo como .csv
+
+    archivos_titulares_2 = pd.read_csv(archivos_titulares_1, encoding='iso8859_2')# leo el archivo
+    archivos_titulares_3 = archivos_titulares_2['titular'].str.split(expand=True).drop([0], axis=1)# divido en columnas, cada palabra
+    # es una columna, y elimino la primer columna (elimino esa columna porque son números)
+    archivos_titulares_3 = archivos_titulares_3.applymap(str)# convierto los datos en string
+    archivos_titulares_4 = archivos_titulares_3.iloc[0:, 0:].agg(' '.join, axis=1)# vuelvo a juntar las columnas en una sola
+
+    encabezado = ['titular']# en los pasos anteriores perdí el encabezado creado, lo creo otra vez
+    archivos_titulares_4.to_csv(archivos_titulares_1, header=encabezado, encoding='iso8859_2', index=False)# guardo el archivo
+
+    archivos_titulares_5 = pd.read_csv(archivos_titulares_1, encoding='iso8859_2')# lo leo con las modificaciones
+
+    import re
+    archivos_titulares_5 = archivos_titulares_5.replace({'None':''}, regex=True)# en los pasos anteriores se crearon 'None'
+    # entonces los tengo que eliminar y los elimino con replace con ''
+    
+    fecha = archivos_titulares_5.iloc[0,0]# selecciono el elemento de la primer fila y lo guardo en el objeto 'fecha'
+    fecha
+    archivos_titulares_5['fecha'] = fecha# incorporo la columna con nombre fecha y cada fila tendrá como dato la fecha
+    
+    diario = archivos_titulares_1[0:6]# creo el objeto diario con el parte del nombre del diario, por eso [0:6]
+    archivos_titulares_5['diario'] = diario# creo columna y tiene como dato 'archivos_titulares_1[0:6]'
+    archivos_titulares_5 = archivos_titulares_5.drop(archivos_titulares_5.index[[0,1]])# elimino la primer fila del archivo
+    # porque tengo escrito la fecha y no un titular en esa fila
+    archivos_titulares_5 = archivos_titulares_5.drop_duplicates()# elimino las filas repetidas
+
+    archivos_titulares_5.to_csv(archivos_titulares_1, encoding='iso8859_2', index=False)# guardo el archivo con todas las
+    # modificaciones que genera la función 'modificar_archivo(diario)
+
+archivos_diarios = os.listdir('C:/Users/inesd/Documents/Wrangling_R/proyecto_copia_2')
+#len(archivos_diarios)
+
+for i in range(len(archivos_diarios)):
+    
+    os.chdir('C:/Users/inesd/Documents/Wrangling_R/proyecto_copia_2')# me lleva a una ubicación
+    diario_prueba = pd.read_csv(archivos_titulares[i], skiprows=1, encoding='iso8859_2', header=None, sep='\t')# leo el archivo
+    modificar_archivo(diario_prueba)# le aplico la función al archivo .txt
+
+############################
+
+#archivos_diarios_modcsv = os.listdir('C:/Users/inesd/Documents/Python Scripts/arch_tit_modificados')
+#len(archivos_diarios_modcsv)
+
+
+
