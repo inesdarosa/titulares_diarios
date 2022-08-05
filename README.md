@@ -16,5 +16,6 @@ Posteriormente se arma un nuevo archivo incluyendo como columna las etiquetas de
 El archivo archivo_diarios_gral_sentimiento_fecha.py contiene un csv que incluye la columna con el 'sentimiento' y se formateó los datos de fechas con formato fecha, en
 la columna de fecha.
 
+El archivo tit_analisis.ipynb es el comienzo de análisis de los títulos de los diarios, esto es solo el comienzo. 
 
 
