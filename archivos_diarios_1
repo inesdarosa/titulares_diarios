@@ -18,7 +18,7 @@ def modificar_archivo(diario):
     proyecto = r'C:/Users/inesd/Documents/Wrangling_R/proyecto_copia_2'# ubicación de una carpeta
     arch_extension = r".txt"# extensión
     archivos_titulares = [_ for _ in os.listdir(proyecto) if _.endswith(arch_extension)]# genero un objeto de tipo lista 'archivos_titulares'
-    # cada elemento es el nombre del archivo .txt con los titulares de cada diario encontrados en la carpeta 'proy_prueba'.
+    # cada elemento es el nombre del archivo .txt con los titulares de cada diario encontrados en la carpeta 'proy_copia_2'.
    
     os.chdir('C:/Users/inesd/Documents/Python Scripts/arch_tit_modificados')# me lleva a una ubicación
     encabezado = ['titular']
@@ -55,19 +55,17 @@ def modificar_archivo(diario):
     archivos_titulares_5.to_csv(archivos_titulares_1, encoding='iso8859_2', index=False)# guardo el archivo con todas las
     # modificaciones que genera la función 'modificar_archivo(diario)
 
-archivos_diarios = os.listdir('C:/Users/inesd/Documents/Wrangling_R/proyecto_copia_2')
+archivos_diarios = os.listdir('C:/Users/inesd/Documents/Wrangling_R/proyecto_copia_2')# lista de archivos en la carpeta 'proyecto_copia_2'
 #len(archivos_diarios)
 
 for i in range(len(archivos_diarios)):
     
     os.chdir('C:/Users/inesd/Documents/Wrangling_R/proyecto_copia_2')# me lleva a una ubicación
     diario_prueba = pd.read_csv(archivos_titulares[i], skiprows=1, encoding='iso8859_2', header=None, sep='\t')# leo el archivo
-    modificar_archivo(diario_prueba)# le aplico la función al archivo .txt
-
+    modificar_archivo(diario_prueba)# le aplico la función al archivo .txt que realizará modificaciones y guardará esa nueva versión
+# como csv
 ############################
 
-#archivos_diarios_modcsv = os.listdir('C:/Users/inesd/Documents/Python Scripts/arch_tit_modificados')
-#len(archivos_diarios_modcsv)
 
 
 
