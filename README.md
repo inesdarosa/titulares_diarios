@@ -1,5 +1,8 @@
 # titulares_diarios
-código para bajar titulares de diarios y guardar en archivos txt
+
+código para bajar títulos de diarios on line y se les hace analiza esos título (NLP), particularmente
+se realiza un análisis de sentimiento utilizando el paquete pysentimiento (pysentimiento: A Python Toolkit for Sentiment Analysis and SocialNLP tasks. 
+Juan Manuel Pérez, Juan Carlos Giudici, Franco Luque. arXiv:2106.09462 [cs.CL])
 
 En este conjunto de archivos se encuentran los pasos que seguí para bajar los títulos presentes en 5 páginas de noticias del Uruguay.
 El archivo funcion_titulares.R toma los títulos por página de diarios y los guarda como txt, obteniendo 5 archivos txt, uno por diario.
