@@ -17,7 +17,7 @@ El archivo archivo_diarios_gral_sentimiento_fecha.py contiene un csv que incluye
 la columna de fecha.
 
 El archivo base_tit_senti_fecha.csv contiene los datos, títulos de los diarios, que se usan para analizar el sentimiento.
-El archivo tit_senti_gral.ipynb es el comienzo de análisis de los títulos de los diarios, esto es solo el comienzo.
+En la carpeta Analisis hay análisis exploratorios de los datos que son solo el comienzo.
 
 
 
